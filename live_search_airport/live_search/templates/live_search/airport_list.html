@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="{% static 'live_search/jquery-3.5.1.min.js' %}"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="{% static 'live_search/scripts.js' %}"></script>
+  <title>Title</title>
+</head>
+<body>
+<form action="{% url 'airport_list' %}" method="get">
+  {{ form.as_p }}
+  {% csrf_token %}
+  <input type="submit" value="find">
+  {% for airport in airport_list %}
+  <div>
+    <p>{{ airport.iata }}, {{ airport.name }}, {{ airport.city }}, {{ airport.country }}, {{ airport.latitude }}, {{ airport.longitude }}</p>
+  </div>
+  {% endfor %}
+</form>
+</body>
+</html>
